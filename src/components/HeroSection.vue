@@ -76,7 +76,11 @@
               ></path>
             </svg>
           </a>
-          <a :href="secondaryButton.href" class="btn-secondary text-lg group">
+          <a
+            href="#servicios"
+            class="btn-secondary text-lg group"
+            @click.prevent="scrollToServices"
+          >
             {{ secondaryButton.text }}
             <svg
               class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
@@ -100,6 +104,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+
+// Register the ScrollToPlugin
+gsap.registerPlugin(ScrollToPlugin)
 
 interface Button {
   text: string
@@ -138,6 +147,21 @@ const heroTitle = ref<HTMLElement>()
 const heroSubtitle = ref<HTMLElement>()
 const heroDescription = ref<HTMLElement>()
 const heroButtons = ref<HTMLElement>()
+
+// Function to scroll to services section
+const scrollToServices = () => {
+  const servicesSection = document.querySelector('#servicios') as HTMLElement
+  if (servicesSection) {
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: {
+        y: servicesSection,
+        offsetY: 100,
+      },
+      ease: 'power2.inOut',
+    })
+  }
+}
 
 defineExpose({
   heroImage,

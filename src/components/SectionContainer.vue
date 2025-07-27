@@ -1,5 +1,6 @@
 <template>
   <section
+    :id="sectionId"
     :class="[
       'section-padding',
       backgroundClass,
@@ -32,11 +33,13 @@ interface Props {
   backgroundClass?: string
   containerClass?: string
   hasBackgroundElements?: boolean
+  sectionId?: string
 }
 
 withDefaults(defineProps<Props>(), {
   backgroundClass: 'bg-white',
   containerClass: 'max-w-5xl mx-auto',
   hasBackgroundElements: false,
+  sectionId: undefined,
 })
 </script>

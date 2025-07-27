@@ -1,19 +1,19 @@
 <template>
-  <section class="py-16 bg-white" style="opacity: 1 !important; visibility: visible !important">
+  <section class="py-16 bg-white">
     <div class="container-custom">
-      <div class="max-w-5xl mx-auto">
-        <!-- Client Logos Section -->
-        <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
-          <div
-            v-for="(client, index) in clients"
-            :key="index"
-            class="flex items-center justify-center"
-            ref="statRefs"
-          >
-            <div class="text-center">
-              <div class="text-2xl font-bold text-black mb-2">{{ client.name }}</div>
-            </div>
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div
+          v-for="(stat, index) in stats"
+          :key="index"
+          class="text-center"
+          :ref="
+            (el) => {
+              if (el) statRefs[index] = el as HTMLElement
+            }
+          "
+        >
+          <div class="text-4xl font-bold text-black mb-2">{{ stat.value }}</div>
+          <div class="text-gray-600">{{ stat.label }}</div>
         </div>
       </div>
     </div>
@@ -21,24 +21,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref } from 'vue'
 
-const statRefs = ref<HTMLElement[]>([])
+interface Stat {
+  value: string
+  label: string
+}
 
-// Client logos data - similar to the image reference
-const clients = computed(() => [
-  { name: 'NATIONAL BANK' },
-  { name: 'mattered' },
-  { name: 'Coca-Cola' },
-  { name: 'Adobe' },
-  { name: 'SUBWAY' },
-  { name: 'codecademy' },
-])
+interface Props {
+  stats?: Stat[]
+}
 
-onMounted(() => {
-  console.log('StatsSection mounted')
-  console.log('statRefs:', statRefs.value)
+withDefaults(defineProps<Props>(), {
+  stats: () => [
+    { value: '20+', label: 'Proyectos Completados' },
+    { value: '24/7', label: 'Soporte Disponible' },
+    { value: '7+', label: 'Años de Experiencia' },
+  ],
 })
+
+const statRefs = ref<(HTMLElement | null)[]>([])
 
 defineExpose({
   statRefs,

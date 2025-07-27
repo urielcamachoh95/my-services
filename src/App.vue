@@ -10,12 +10,12 @@
     <StatsSection ref="stats" />
 
     <!-- Why Work With Me Section -->
-    <SectionContainer background-class="bg-gray-50">
+    <SectionContainer background-class="bg-gray-50" section-id="por-que-trabajar-conmigo">
       <WhyWorkWithMeSection ref="why" />
     </SectionContainer>
 
     <!-- Services Section -->
-    <SectionContainer background-class="bg-white" id="servicios">
+    <SectionContainer background-class="bg-white" section-id="servicios">
       <ServicesSection ref="services" />
     </SectionContainer>
 
@@ -63,13 +63,6 @@ import SiteFooter from './components/SiteFooter.vue'
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
 
-// Verify ScrollTrigger is registered
-if (!ScrollTrigger) {
-  console.error('ScrollTrigger not registered!')
-} else {
-  console.log('ScrollTrigger registered successfully')
-}
-
 // Component refs
 const navigation = ref<InstanceType<typeof SiteNavigation>>()
 const hero = ref<InstanceType<typeof HeroSection>>()
@@ -82,39 +75,20 @@ const process = ref<InstanceType<typeof ProcessSteps>>()
 const contact = ref<InstanceType<typeof ContactSection>>()
 
 onMounted(async () => {
-  console.log('App mounted, starting initialization...')
-
   // Wait for next tick to ensure all components are mounted
   await nextTick()
-  console.log('Next tick completed')
 
   // Add a small delay to ensure all components are fully rendered
   await new Promise((resolve) => setTimeout(resolve, 100))
-  console.log('Delay completed')
-
-  // Log component refs to debug
-  console.log('Navigation ref:', navigation.value)
-  console.log('Hero ref:', hero.value)
-  console.log('Stats ref:', stats.value)
-  console.log('Why ref:', why.value)
-  console.log('Services ref:', services.value)
-  console.log('Success cases ref:', successCases.value)
-  console.log('Testimonials ref:', testimonials.value)
-  console.log('Process ref:', process.value)
-  console.log('Contact ref:', contact.value)
 
   // Ensure all sections are visible immediately
   gsap.set('section', { opacity: 1, visibility: 'visible' })
   gsap.set('.section-padding', { opacity: 1, visibility: 'visible' })
-  gsap.set('[ref]', { opacity: 1, visibility: 'visible' })
-
-  console.log('GSAP initial states set')
 
   // Simple initial animations for hero only
   const tl = gsap.timeline()
 
   if (navigation.value?.logo) {
-    console.log('Animating navigation logo')
     tl.from(navigation.value.logo, {
       y: -50,
       opacity: 0,
@@ -130,7 +104,6 @@ onMounted(async () => {
     hero.value?.heroDescription &&
     hero.value?.heroButtons
   ) {
-    console.log('Animating hero section')
     tl.from(
       hero.value.heroImage,
       {
@@ -185,11 +158,8 @@ onMounted(async () => {
 
   // Simple scroll animations for other sections
   setTimeout(() => {
-    console.log('Setting up scroll animations...')
-
-    // Client logos animation
+    // Stats animation
     if (stats.value?.statRefs && stats.value.statRefs.length > 0) {
-      console.log('Setting up stats animation')
       gsap.from(stats.value.statRefs, {
         scrollTrigger: {
           trigger: stats.value.statRefs[0],
@@ -204,7 +174,6 @@ onMounted(async () => {
 
     // Why section animations
     if (why.value?.whyTitle) {
-      console.log('Setting up why section animation')
       gsap.from(why.value.whyTitle, {
         scrollTrigger: {
           trigger: why.value.whyTitle,
@@ -218,7 +187,6 @@ onMounted(async () => {
 
     // Services animations
     if (services.value?.servicesTitle) {
-      console.log('Setting up services animation')
       gsap.from(services.value.servicesTitle, {
         scrollTrigger: {
           trigger: services.value.servicesTitle,
@@ -231,22 +199,21 @@ onMounted(async () => {
     }
 
     if (services.value?.serviceRefs && services.value.serviceRefs.length > 0) {
-      console.log('Setting up service cards animation')
       gsap.from(services.value.serviceRefs, {
         scrollTrigger: {
           trigger: services.value.serviceRefs[0],
           start: 'top 80%',
         },
-        y: 50,
+        y: 60,
         opacity: 0,
         duration: 0.8,
-        stagger: 0.2,
+        stagger: 0.3,
+        ease: 'power3.out',
       })
     }
 
     // Success cases animations
     if (successCases.value?.successTitle) {
-      console.log('Setting up success cases animation')
       gsap.from(successCases.value.successTitle, {
         scrollTrigger: {
           trigger: successCases.value.successTitle,
@@ -260,7 +227,6 @@ onMounted(async () => {
 
     // Process animations
     if (process.value?.processTitle) {
-      console.log('Setting up process animation')
       gsap.from(process.value.processTitle, {
         scrollTrigger: {
           trigger: process.value.processTitle,
@@ -274,7 +240,6 @@ onMounted(async () => {
 
     // Testimonials animations
     if (testimonials.value?.testimonialsTitle) {
-      console.log('Setting up testimonials animation')
       gsap.from(testimonials.value.testimonialsTitle, {
         scrollTrigger: {
           trigger: testimonials.value.testimonialsTitle,
@@ -288,7 +253,6 @@ onMounted(async () => {
 
     // Contact animations
     if (contact.value?.contactTitle) {
-      console.log('Setting up contact animation')
       gsap.from(contact.value.contactTitle, {
         scrollTrigger: {
           trigger: contact.value.contactTitle,
@@ -299,8 +263,6 @@ onMounted(async () => {
         duration: 0.6,
       })
     }
-
-    console.log('All scroll animations set up')
   }, 500)
 
   // Smooth scroll for navigation links
@@ -318,7 +280,5 @@ onMounted(async () => {
       }
     })
   })
-
-  console.log('App initialization completed')
 })
 </script>

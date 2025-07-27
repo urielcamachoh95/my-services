@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-5xl mx-auto" style="opacity: 1 !important; visibility: visible !important">
+  <div class="max-w-5xl mx-auto">
     <h2 class="text-4xl md:text-5xl font-bold text-black text-center mb-16" ref="whyTitle">
       {{ title }}
     </h2>
@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 interface Props {
   title?: string
@@ -60,13 +60,6 @@ withDefaults(defineProps<Props>(), {
 const whyTitle = ref<HTMLElement>()
 const whyContent = ref<HTMLElement>()
 const whyImage = ref<HTMLElement>()
-
-onMounted(() => {
-  console.log('WhyWorkWithMeSection mounted')
-  console.log('whyTitle:', whyTitle.value)
-  console.log('whyContent:', whyContent.value)
-  console.log('whyImage:', whyImage.value)
-})
 
 defineExpose({
   whyTitle,
