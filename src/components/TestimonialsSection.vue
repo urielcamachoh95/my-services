@@ -41,7 +41,7 @@ const testimonials = computed(() => [
     quote:
       'Uriel nos ayudó a lanzar nuestro sitio después de mucho tiempo posponiéndolo. Ahora recibimos reservaciones sin depender de mensajes o llamadas todo el día. Fue claro y comprometido desde el inicio.',
     authorName: 'Cabañas en Atlixco',
-    authorTitle: 'Dueña de cabañas rurales en Atlixco',
+    authorTitle: 'Dueño de cabañas en Atlixco',
     avatarEmoji: '🌲',
     variant: 'primary' as const,
   },
