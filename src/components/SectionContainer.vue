@@ -20,7 +20,10 @@
       ></div>
     </div>
 
-    <div class="container-custom" :class="{ 'relative z-10': hasBackgroundElements }">
+    <div
+      class="container-custom px-4 sm:px-6 lg:px-8"
+      :class="{ 'relative z-10': hasBackgroundElements }"
+    >
       <div :class="containerClass">
         <slot />
       </div>

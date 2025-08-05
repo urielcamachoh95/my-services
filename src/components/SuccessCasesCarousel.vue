@@ -118,8 +118,7 @@ const cases = computed(() => [
     title: 'Sitio web de reservas para cabañas en Atlixco, Puebla',
     description:
       'Después de mucho tiempo queriendo lanzar su sitio, una empresa de cabañas en Atlixco confió en mí para crear una plataforma donde pudieran recibir reservaciones directamente.',
-    image:
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    image: '/my-services/images/villas-arvem.png',
     imageAlt: 'Cabañas en Atlixco - Sitio web de reservas',
     features: [
       {
@@ -149,8 +148,8 @@ const cases = computed(() => [
     title: 'Tienda en línea para envío de flores y renta de mobiliario en Puebla',
     description:
       'Una empresa dedicada al envío de flores y renta de mobiliario para eventos en Puebla necesitaba una plataforma moderna que mostrara su catálogo de manera clara y permitiera gestionar pedidos fácilmente.',
-    image:
-      'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+
+    image: '/my-services/images/eventosa.png',
     imageAlt: 'Tienda de flores y mobiliario - E-commerce',
     features: [
       {

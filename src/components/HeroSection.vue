@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative min-h-screen flex items-center justify-center bg-background overflow-hidden py-20"
+    class="relative py-20 md:py-40 flex items-center justify-center bg-background overflow-hidden"
   >
     <!-- Background Image -->
     <div class="absolute inset-0 z-0">
@@ -14,25 +14,8 @@
       ></div>
     </div>
 
-    <div class="container-custom relative z-10">
+    <div class="container-custom px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
-        <!-- Profile Image with bubble -->
-        <div class="mb-12 flex justify-center" ref="heroImage">
-          <div class="relative">
-            <img
-              :src="profileImage"
-              :alt="profileAlt"
-              class="w-24 h-24 rounded-full mx-auto object-cover shadow-lg border-4 border-white"
-            />
-            <!-- Name bubble -->
-            <div
-              class="absolute -bottom-2 -right-2 bg-white rounded-full px-3 py-1 shadow-sm border border-gray-100"
-            >
-              <span class="text-sm font-medium text-gray-800">{{ name }}</span>
-            </div>
-          </div>
-        </div>
-
         <!-- Main Headline -->
         <h1 class="text-4xl md:text-6xl font-bold text-black mb-8 leading-tight" ref="heroTitle">
           <span class="text-black">

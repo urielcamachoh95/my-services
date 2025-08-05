@@ -21,7 +21,7 @@
       Roboto,
       sans-serif;
     line-height: 1.6;
-    padding-top: 80px; /* Compensate for fixed navigation */
+    padding-top: 65px; /* Compensate for fixed navigation */
     margin: 0;
   }
 

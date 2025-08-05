@@ -1,5 +1,5 @@
 <template>
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-white px-4 sm:px-6 lg:px-8">
     <div class="container-custom">
       <div class="max-w-4xl mx-auto text-center">
         <!-- Handshake Icon -->
@@ -30,7 +30,7 @@
           ref="contactButtons"
         >
           <a
-            href="https://wa.me/+5212212287141?text=Hola%20Uriel,%20me%20interesa%20trabajar%20contigo%20en%20mi%20proyecto"
+            href="https://wa.me/573001234567?text=Hola%20Uriel,%20me%20interesa%20trabajar%20contigo%20en%20mi%20proyecto"
             target="_blank"
             rel="noopener noreferrer"
             class="btn-primary text-lg group"
@@ -54,6 +54,9 @@
                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
               ></path>
             </svg>
+          </a>
+          <a :href="whatsappButton.href" class="btn-secondary text-lg">
+            {{ whatsappButton.text }}
           </a>
         </div>
       </div>

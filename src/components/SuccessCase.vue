@@ -57,14 +57,9 @@
       </div>
 
       <div class="relative">
-        <img
-          :src="image"
-          :alt="imageAlt"
-          class="rounded-2xl shadow-sm border border-gray-100 object-cover w-full h-96"
-        />
-        <div
-          class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-2xl"
-        ></div>
+        <div class="h-96 rounded-2xl shadow-sm border border-gray-100 overflow-hidden bg-gray-900">
+          <img :src="image" :alt="imageAlt" class="w-full h-auto object-contain" />
+        </div>
 
         <!-- Stats overlay -->
         <div
