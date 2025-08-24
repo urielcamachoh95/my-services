@@ -1,45 +1,63 @@
 <template>
   <!-- Site Navigation Component -->
   <nav
-    class="bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    class="bg-white/95 backdrop-blur-md shadow-soft border-b border-gray-100 fixed top-0 left-0 right-0 z-50 transition-all duration-300"
   >
     <div class="container-custom px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-4">
-        <!-- Logo/Name -->
-        <div class="text-xl font-semibold text-black" ref="logo">{{ logoText }}</div>
+        <!-- Enhanced Logo/Name -->
+        <div class="text-xl font-bold text-gray-900 group cursor-pointer" ref="logo">
+          <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            {{ logoText }}
+          </span>
+          <!-- Subtle underline effect -->
+          <div
+            class="w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"
+          ></div>
+        </div>
 
-        <!-- Center Navigation -->
+        <!-- Center Navigation with enhanced styling -->
         <div class="hidden md:flex space-x-8">
           <a
             v-for="item in menuItems"
             :key="item.href"
             :href="item.href"
-            class="text-gray-600 hover:text-black transition-colors duration-300 nav-link text-sm font-medium cursor-pointer"
+            class="text-gray-600 hover:text-blue-600 transition-all duration-300 nav-link text-sm font-medium cursor-pointer relative group"
             @click.prevent="scrollToSection(item.href)"
-            >{{ item.text }}</a
           >
+            {{ item.text }}
+            <span
+              class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
         </div>
 
         <!-- Right side - Contact info and social links -->
         <div class="hidden md:flex items-center space-x-6">
-          <!-- Email -->
-          <div class="flex items-center space-x-2">
-            <span class="text-sm text-gray-600">{{ email }}</span>
+          <!-- Enhanced Email -->
+          <div class="flex items-center space-x-2 group">
+            <div
+              class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-125 transition-transform duration-300"
+            ></div>
+            <span
+              class="text-sm text-gray-600 group-hover:text-blue-600 transition-colors duration-300"
+              >{{ email }}</span
+            >
           </div>
 
-          <!-- Social Links -->
+          <!-- Enhanced Social Links -->
           <div class="flex items-center space-x-4">
             <a
               v-for="social in socialLinks"
               :key="social.name"
               :href="social.href"
-              class="text-gray-600 hover:text-black transition-colors duration-300 text-sm flex items-center"
+              class="text-gray-600 hover:text-blue-600 transition-all duration-300 text-sm flex items-center p-2 rounded-lg hover:bg-blue-50 group"
               :title="social.name"
             >
               <!-- LinkedIn Icon -->
               <svg
                 v-if="social.name === 'LinkedIn'"
-                class="w-5 h-5"
+                class="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -51,7 +69,7 @@
               <!-- GitHub Icon -->
               <svg
                 v-else-if="social.name === 'GitHub'"
-                class="w-5 h-5"
+                class="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -63,7 +81,7 @@
               <!-- Instagram Icon -->
               <svg
                 v-else-if="social.name === 'Instagram'"
-                class="w-5 h-5"
+                class="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -78,12 +96,12 @@
           </div>
         </div>
 
-        <!-- Mobile menu button -->
+        <!-- Enhanced Mobile menu button -->
         <div class="md:hidden">
           <button
             @click="toggleMobileMenu"
-            class="text-gray-600 hover:text-black transition-colors p-2"
-            :class="{ 'text-black': isMobileMenuOpen }"
+            class="text-gray-600 hover:text-blue-600 transition-all duration-300 p-2 rounded-lg hover:bg-blue-50 relative group"
+            :class="{ 'text-blue-600 bg-blue-50': isMobileMenuOpen }"
           >
             <svg
               class="w-6 h-6 transition-transform duration-300"
@@ -107,11 +125,15 @@
                 d="M6 18L18 6M6 6l12 12"
               ></path>
             </svg>
+            <!-- Subtle glow effect -->
+            <div
+              class="absolute inset-0 bg-blue-100/20 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            ></div>
           </button>
         </div>
       </div>
 
-      <!-- Mobile Menu -->
+      <!-- Enhanced Mobile Menu -->
       <div v-show="isMobileMenuOpen" class="md:hidden border-t border-gray-100 py-4">
         <!-- Mobile Navigation Links -->
         <div class="space-y-4 mb-6">
@@ -119,32 +141,41 @@
             v-for="item in menuItems"
             :key="item.href"
             :href="item.href"
-            class="block text-gray-600 hover:text-black transition-colors duration-300 text-lg font-medium cursor-pointer py-2"
+            class="block text-gray-600 hover:text-blue-600 transition-all duration-300 text-lg font-medium cursor-pointer py-2 px-4 rounded-lg hover:bg-blue-50 group"
             @click.prevent="handleMobileMenuClick(item.href)"
           >
             {{ item.text }}
+            <span
+              class="block w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"
+            ></span>
           </a>
         </div>
 
         <!-- Mobile Contact Info -->
         <div class="border-t border-gray-100 pt-4">
-          <div class="flex items-center space-x-2 mb-4">
-            <span class="text-sm text-gray-600">{{ email }}</span>
+          <div class="flex items-center space-x-2 mb-4 px-4 group">
+            <div
+              class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-125 transition-transform duration-300"
+            ></div>
+            <span
+              class="text-sm text-gray-600 group-hover:text-blue-600 transition-colors duration-300"
+              >{{ email }}</span
+            >
           </div>
 
           <!-- Mobile Social Links -->
-          <div class="flex items-center space-x-4">
+          <div class="flex items-center space-x-4 px-4">
             <a
               v-for="social in socialLinks"
               :key="social.name"
               :href="social.href"
-              class="text-gray-600 hover:text-black transition-colors duration-300 text-sm flex items-center"
+              class="text-gray-600 hover:text-blue-600 transition-all duration-300 text-sm flex items-center p-2 rounded-lg hover:bg-blue-50 group"
               :title="social.name"
             >
               <!-- LinkedIn Icon -->
               <svg
                 v-if="social.name === 'LinkedIn'"
-                class="w-5 h-5"
+                class="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -156,7 +187,7 @@
               <!-- GitHub Icon -->
               <svg
                 v-else-if="social.name === 'GitHub'"
-                class="w-5 h-5"
+                class="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -168,7 +199,7 @@
               <!-- Instagram Icon -->
               <svg
                 v-else-if="social.name === 'Instagram'"
-                class="w-5 h-5"
+                class="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -189,11 +220,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-
-// Register the ScrollToPlugin
-gsap.registerPlugin(ScrollToPlugin)
 
 interface MenuItem {
   href: string
@@ -217,7 +243,8 @@ withDefaults(defineProps<Props>(), {
   menuItems: () => [
     { href: '#servicios', text: 'Servicios' },
     { href: '#proceso', text: 'Proceso' },
-    { href: '#contacto', text: 'Contacto' },
+    { href: '#faq', text: 'FAQ' },
+    { href: '#contacto', text: 'Hablemos' },
   ],
   email: 'urielcamachoh95@gmail.com',
   socialLinks: () => [
@@ -235,14 +262,7 @@ const scrollToSection = (href: string) => {
   const sectionId = href.replace('#', '')
   const section = document.querySelector(`#${sectionId}`) as HTMLElement
   if (section) {
-    gsap.to(window, {
-      duration: 1,
-      scrollTo: {
-        y: section,
-        offsetY: 100,
-      },
-      ease: 'power2.inOut',
-    })
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 }
 

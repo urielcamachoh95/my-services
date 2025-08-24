@@ -8,11 +8,11 @@
     <div class="flex justify-center items-center gap-4 mb-8">
       <button
         @click="previousCase"
-        class="w-12 h-12 bg-white rounded-full shadow-sm border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 group"
+        class="w-12 h-12 bg-white rounded-full shadow-sm border border-cyan-200 flex items-center justify-center hover:bg-cyan-50 transition-colors duration-300 group"
         :class="{ 'opacity-50 cursor-not-allowed': currentCase === 0 }"
       >
         <svg
-          class="w-6 h-6 text-gray-600 group-hover:text-black transition-colors"
+          class="w-6 h-6 text-cyan-600 group-hover:text-cyan-700 transition-colors"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -31,18 +31,18 @@
           v-for="(_, index) in cases"
           :key="index"
           class="w-3 h-3 rounded-full transition-all duration-300 cursor-pointer"
-          :class="currentCase === index ? 'bg-black' : 'bg-gray-300'"
+          :class="currentCase === index ? 'bg-cyan-500' : 'bg-cyan-200'"
           @click="goToCase(index)"
         ></div>
       </div>
 
       <button
         @click="nextCase"
-        class="w-12 h-12 bg-white rounded-full shadow-sm border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors duration-300 group"
+        class="w-12 h-12 bg-white rounded-full shadow-sm border border-cyan-200 flex items-center justify-center hover:bg-cyan-50 transition-colors duration-300 group"
         :class="{ 'opacity-50 cursor-not-allowed': currentCase === cases.length - 1 }"
       >
         <svg
-          class="w-6 h-6 text-gray-600 group-hover:text-black transition-colors"
+          class="w-6 h-6 text-cyan-600 group-hover:text-cyan-700 transition-colors"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -148,7 +148,6 @@ const cases = computed(() => [
     title: 'Tienda en línea para envío de flores y renta de mobiliario en Puebla',
     description:
       'Una empresa dedicada al envío de flores y renta de mobiliario para eventos en Puebla necesitaba una plataforma moderna que mostrara su catálogo de manera clara y permitiera gestionar pedidos fácilmente.',
-
     image: '/my-services/images/eventosa.png',
     imageAlt: 'Tienda de flores y mobiliario - E-commerce',
     features: [
@@ -173,6 +172,66 @@ const cases = computed(() => [
     stats: [
       { value: '+150%', label: 'Ventas online', valueClass: 'text-black' },
       { value: '24h', label: 'Entrega', valueClass: 'text-black' },
+    ],
+  },
+  {
+    title: 'Sitio web corporativo para restaurante tradicional mexicano',
+    description:
+      'Un restaurante con más de 20 años de tradición necesitaba modernizar su presencia digital para atraer a nuevos clientes y mostrar su auténtica cocina mexicana.',
+    image: '/my-services/images/restaurante-mexicano.png',
+    imageAlt: 'Restaurante mexicano - Sitio web corporativo',
+    features: [
+      {
+        text: 'Creé un sitio web elegante y responsivo que destaca la historia del restaurante, su menú tradicional y la experiencia gastronómica única que ofrecen.',
+        icon: CheckSmallIcon,
+        iconBgClass: 'bg-gray-100',
+        iconClass: 'text-black',
+      },
+      {
+        text: 'El sitio incluye sistema de reservas online, galería de platillos, y está optimizado para búsquedas locales, aumentando significativamente las reservas.',
+        icon: TrendingUpIcon,
+        iconBgClass: 'bg-gray-100',
+        iconClass: 'text-black',
+      },
+    ],
+    tags: [
+      { text: 'WordPress', class: 'bg-gray-100 text-black' },
+      { text: 'Sistema de Reservas', class: 'bg-gray-100 text-black' },
+      { text: 'SEO Local', class: 'bg-gray-100 text-black' },
+    ],
+    stats: [
+      { value: '+80%', label: 'Reservas online', valueClass: 'text-black' },
+      { value: '100%', label: 'Satisfacción', valueClass: 'text-black' },
+    ],
+  },
+  {
+    title: 'E-commerce para tienda de artesanías mexicanas',
+    description:
+      'Una emprendedora apasionada por las artesanías mexicanas necesitaba una plataforma que le permitiera vender sus productos a nivel nacional e internacional.',
+    image: '/my-services/images/artesanias-mexicanas.png',
+    imageAlt: 'Artesanías mexicanas - E-commerce',
+    features: [
+      {
+        text: 'Desarrollé una tienda en línea completa con sistema de pagos internacionales, gestión de inventario y envíos a todo el mundo.',
+        icon: CheckSmallIcon,
+        iconBgClass: 'bg-gray-100',
+        iconClass: 'text-black',
+      },
+      {
+        text: 'El sitio incluye blog para contar historias de los artesanos, sistema de reseñas y está optimizado para conversiones, logrando ventas en 15 países.',
+        icon: TrendingUpIcon,
+        iconBgClass: 'bg-gray-100',
+        iconClass: 'text-black',
+      },
+    ],
+    tags: [
+      { text: 'Shopify', class: 'bg-gray-100 text-black' },
+      { text: 'E-commerce', class: 'bg-gray-100 text-black' },
+      { text: 'Pagos Internacionales', class: 'bg-gray-100 text-black' },
+    ],
+    stats: [
+      { value: '15+', label: 'Países', valueClass: 'text-black' },
+      { value: '+200%', label: 'Ventas', valueClass: 'text-black' },
     ],
   },
 ])

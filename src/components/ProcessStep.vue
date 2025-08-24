@@ -1,65 +1,68 @@
 <template>
-  <div class="relative group" ref="processStep">
-    <!-- Background effect -->
-    <div
-      class="absolute inset-0 bg-gray-50 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-    ></div>
-
-    <div
-      class="relative bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-500 group-hover:-translate-y-1 group-hover:scale-105"
-    >
-      <!-- Top section with icon and number -->
-      <div class="flex items-center justify-between mb-5">
-        <div
-          class="w-14 h-14 md:w-16 md:h-16 text-white rounded-2xl flex items-center justify-center font-bold text-lg md:text-xl shadow-sm group-hover:scale-110 transition-transform duration-300 relative overflow-hidden"
-          :class="iconClass"
-          ref="stepIcon"
-        >
-          <!-- Icon background animation -->
-          <div
-            class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-          ></div>
-          <component :is="icon" class="w-6 h-6 md:w-8 md:h-8 relative z-10" />
-        </div>
-        <div
-          class="text-2xl md:text-3xl font-bold text-gray-300 group-hover:text-black transition-colors duration-300"
-          :class="numberClass"
-        >
-          {{ stepNumber }}
-        </div>
+  <div class="group relative vapor-fade-in">
+    <div class="glass-card relative overflow-hidden h-full p-6">
+      <!-- Subtle background pattern -->
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0 isometric-grid"></div>
       </div>
 
-      <!-- Content section -->
-      <div class="space-y-4">
-        <h3
-          class="text-xl md:text-2xl font-bold text-black group-hover:text-black transition-colors duration-300 leading-tight"
-          :class="titleClass"
-        >
-          {{ title }}
-        </h3>
-        <p class="text-gray-600 leading-relaxed text-sm md:text-base">{{ description }}</p>
-
-        <!-- Items list with improved styling -->
-        <div class="space-y-2 pt-2">
+      <div class="relative z-10">
+        <!-- Top section with icon and number -->
+        <div class="flex items-center justify-between mb-6">
           <div
-            v-for="(item, index) in items"
-            :key="index"
-            class="flex items-center gap-3 text-sm text-gray-500 group-hover:text-gray-700 transition-colors duration-300"
+            class="w-20 h-20 text-white rounded-2xl flex items-center justify-center font-bold text-xl shadow-medium group-hover:scale-110 transition-all duration-300 relative overflow-hidden"
+            :class="iconClass"
+            ref="stepIcon"
           >
+            <component :is="icon" class="w-10 h-10 relative z-10" />
+            <!-- Enhanced glow effect -->
             <div
-              class="w-2 h-2 rounded-full animate-pulse flex-shrink-0"
-              :class="itemColor"
-              :style="{ animationDelay: `${index * 1500}ms` }"
+              class="absolute inset-0 bg-white/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-300"
             ></div>
-            <span class="font-medium">{{ item }}</span>
+          </div>
+          <div
+            class="text-5xl font-bold text-gray-200 group-hover:text-blue-600 transition-all duration-300 group-hover:scale-110"
+            :class="numberClass"
+          >
+            {{ stepNumber }}
+          </div>
+        </div>
+
+        <!-- Content section -->
+        <div class="space-y-4">
+          <h3
+            class="heading-sm group-hover:text-blue-600 transition-colors duration-300 leading-tight"
+          >
+            {{ title }}
+          </h3>
+          <p class="text-body-md text-gray-600 leading-relaxed">{{ description }}</p>
+
+          <!-- Enhanced items list with improved styling -->
+          <div class="space-y-3 pt-4">
+            <div
+              v-for="(item, index) in items"
+              :key="index"
+              class="flex items-center gap-3 text-base text-gray-500 group-hover:text-gray-700 transition-all duration-300 group/item"
+            >
+              <div
+                class="w-3 h-3 rounded-full flex-shrink-0 transition-all duration-300 group-hover/item:scale-125"
+                :class="itemColor"
+              ></div>
+              <span class="font-medium">{{ item }}</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Bottom accent line -->
+      <!-- Enhanced bottom accent line -->
       <div
-        class="absolute bottom-0 left-0 right-0 h-1 rounded-b-3xl transition-all duration-500 opacity-0 group-hover:opacity-100"
+        class="absolute bottom-0 left-0 w-0 h-1 rounded-b-2xl transition-all duration-500 group-hover:w-full"
         :class="accentLineClass"
+      ></div>
+
+      <!-- Corner accent -->
+      <div
+        class="absolute top-0 right-0 w-0 h-0 border-l-[20px] border-l-transparent border-t-[20px] border-t-gray-100 group-hover:border-t-blue-100 transition-all duration-300"
       ></div>
     </div>
   </div>
@@ -89,75 +92,60 @@ const stepIcon = ref<HTMLElement>()
 const iconClass = computed(() => {
   switch (props.variant) {
     case 'primary':
-      return 'bg-black'
+      return 'bg-blue-500'
     case 'accent':
-      return 'bg-black'
+      return 'bg-purple-500'
     case 'success':
-      return 'bg-black'
+      return 'bg-green-500'
     case 'mixed':
-      return 'bg-black'
+      return 'bg-indigo-500'
     default:
-      return 'bg-black'
+      return 'bg-blue-500'
   }
 })
 
 const numberClass = computed(() => {
   switch (props.variant) {
     case 'primary':
-      return 'group-hover:text-black'
+      return 'group-hover:text-blue-600'
     case 'accent':
-      return 'group-hover:text-black'
+      return 'group-hover:text-purple-600'
     case 'success':
-      return 'group-hover:text-black'
+      return 'group-hover:text-green-600'
     case 'mixed':
-      return 'group-hover:text-black'
+      return 'group-hover:text-indigo-600'
     default:
-      return 'group-hover:text-black'
-  }
-})
-
-const titleClass = computed(() => {
-  switch (props.variant) {
-    case 'primary':
-      return 'group-hover:text-black'
-    case 'accent':
-      return 'group-hover:text-black'
-    case 'success':
-      return 'group-hover:text-black'
-    case 'mixed':
-      return 'group-hover:text-black'
-    default:
-      return 'group-hover:text-black'
+      return 'group-hover:text-blue-600'
   }
 })
 
 const itemColor = computed(() => {
   switch (props.variant) {
     case 'primary':
-      return 'bg-black'
+      return 'bg-blue-500'
     case 'accent':
-      return 'bg-black'
+      return 'bg-purple-500'
     case 'success':
-      return 'bg-black'
+      return 'bg-green-500'
     case 'mixed':
-      return 'bg-black'
+      return 'bg-indigo-500'
     default:
-      return 'bg-black'
+      return 'bg-blue-500'
   }
 })
 
 const accentLineClass = computed(() => {
   switch (props.variant) {
     case 'primary':
-      return 'bg-black'
+      return 'bg-blue-500'
     case 'accent':
-      return 'bg-black'
+      return 'bg-purple-500'
     case 'success':
-      return 'bg-black'
+      return 'bg-green-500'
     case 'mixed':
-      return 'bg-black'
+      return 'bg-indigo-500'
     default:
-      return 'bg-black'
+      return 'bg-blue-500'
   }
 })
 

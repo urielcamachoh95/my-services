@@ -26,7 +26,7 @@
 
       <!-- Testimonial content -->
       <div class="relative z-10 space-y-6">
-        <p class="text-lg md:text-xl text-gray-600 leading-relaxed italic">"{{ quote }}"</p>
+        <p class="text-lg md:text-xl text-slate-600 leading-relaxed italic">"{{ quote }}"</p>
 
         <div class="flex items-center gap-4">
           <div
@@ -36,15 +36,17 @@
             {{ avatarEmoji }}
           </div>
           <div>
-            <h4 class="font-semibold text-black">{{ authorName }}</h4>
-            <p class="text-sm text-gray-600">{{ authorTitle }}</p>
+            <h4 class="font-semibold text-slate-800">{{ authorName }}</h4>
+            <p class="text-sm text-slate-500">{{ authorTitle }}</p>
           </div>
         </div>
       </div>
 
       <!-- Success indicator -->
       <div class="absolute top-6 right-6">
-        <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center shadow-sm">
+        <div
+          class="w-8 h-8 bg-gradient-to-br from-cyan-500 to-sky-500 rounded-full flex items-center justify-center shadow-sm"
+        >
           <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
@@ -78,21 +80,25 @@ const testimonialCard = ref<HTMLElement>()
 
 // Computed classes based on variant
 const cardClass = computed(() => {
-  return 'bg-white'
+  return 'bg-white hover:border-cyan-200'
 })
 
 const decorativeClass = computed(() => {
   return props.variant === 'primary'
-    ? 'bg-gray-300 top-0 right-0 translate-x-16'
-    : 'bg-gray-300 top-0 left-0 -translate-x-16'
+    ? 'bg-gradient-to-br from-cyan-100 to-sky-100 top-0 right-0 translate-x-16'
+    : 'bg-gradient-to-br from-sky-100 to-cyan-100 top-0 left-0 -translate-x-16'
 })
 
 const iconClass = computed(() => {
-  return 'bg-black'
+  return props.variant === 'primary'
+    ? 'bg-gradient-to-br from-cyan-500 to-sky-500'
+    : 'bg-gradient-to-br from-sky-500 to-cyan-500'
 })
 
 const avatarClass = computed(() => {
-  return 'bg-black'
+  return props.variant === 'primary'
+    ? 'bg-gradient-to-br from-cyan-500 to-sky-500'
+    : 'bg-gradient-to-br from-sky-500 to-cyan-500'
 })
 
 defineExpose({

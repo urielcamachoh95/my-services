@@ -1,21 +1,39 @@
 <template>
-  <section class="py-16 bg-white px-4 sm:px-6 lg:px-8">
-    <div class="container-custom">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div
-          v-for="(stat, index) in stats"
-          :key="index"
-          class="text-center"
-          :ref="
-            (el) => {
-              if (el) statRefs[index] = el as HTMLElement
-            }
-          "
-        >
-          <div class="text-4xl font-bold text-black mb-2" :data-value="stat.value">
-            <span class="counter">{{ stat.value }}</span>
+  <section class="vapor-section-alt glass-section-alt">
+    <div class="vapor-section-content">
+      <div class="vapor-section-header">
+        <h2 class="vapor-section-title vapor-fade-in" ref="statsTitle">
+          Resultados que hablan por sí solos
+        </h2>
+        <p class="vapor-section-subtitle vapor-fade-in">
+          Cada número representa un proyecto exitoso y un cliente satisfecho
+        </p>
+      </div>
+
+      <div class="vapor-grid-wide grid grid-cols-1 md:grid-cols-3">
+        <div v-for="(stat, index) in stats" :key="index" class="group relative stat-card-enhanced">
+          <div
+            class="glass-card text-center p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+          >
+            <!-- Icon with colored background -->
+            <div
+              class="w-16 h-16 mx-auto mb-6 rounded-xl flex items-center justify-center stat-icon-bg"
+            >
+              <component :is="stat.icon" class="w-8 h-8 text-white" />
+            </div>
+
+            <!-- Stat number -->
+            <div
+              class="text-4xl font-bold text-slate-800 mb-3 group-hover:scale-110 transition-transform duration-300"
+            >
+              {{ stat.value }}
+            </div>
+
+            <!-- Stat description -->
+            <div class="text-slate-600 leading-relaxed">
+              {{ stat.label }}
+            </div>
           </div>
-          <div class="text-gray-600">{{ stat.label }}</div>
         </div>
       </div>
     </div>
@@ -23,76 +41,50 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ref } from 'vue'
+import { CheckCircle, Clock, Code } from 'lucide-vue-next'
 
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger)
-
-interface Stat {
-  value: string
-  label: string
-}
-
-interface Props {
-  stats?: Stat[]
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  stats: () => [
-    { value: '20+', label: 'Proyectos Completados' },
-    { value: '24/7', label: 'Soporte Disponible' },
-    { value: '7+', label: 'Años de Experiencia' },
-  ],
-})
+const stats = [
+  {
+    value: '20+',
+    label: 'Proyectos Entregados a Tiempo',
+    icon: CheckCircle,
+  },
+  {
+    value: '24/7',
+    label: 'Soporte Disponible para Emergencias',
+    icon: Clock,
+  },
+  {
+    value: '7+',
+    label: 'Años Construyendo Soluciones Web',
+    icon: Code,
+  },
+]
 
 const statRefs = ref<(HTMLElement | null)[]>([])
-
-// Function to extract numeric value from string
-const extractNumber = (value: string): number => {
-  const match = value.match(/\d+/)
-  return match ? parseInt(match[0]) : 0
-}
-
-// Function to animate counter
-const animateCounter = (element: HTMLElement, targetValue: string) => {
-  const numericValue = extractNumber(targetValue)
-  const suffix = targetValue.replace(/\d+/, '') // Get the suffix (+, /, etc.)
-
-  gsap.fromTo(
-    element,
-    { innerText: 0 },
-    {
-      innerText: numericValue,
-      duration: 2,
-      ease: 'power2.out',
-      onUpdate: function () {
-        element.innerText = Math.floor(this.targets()[0].innerText) + suffix
-      },
-      scrollTrigger: {
-        trigger: element,
-        start: 'top 80%',
-        end: 'bottom 20%',
-        toggleActions: 'play none none reverse',
-      },
-    },
-  )
-}
-
-onMounted(() => {
-  // Animate each counter when it enters viewport
-  statRefs.value.forEach((ref, index) => {
-    if (ref) {
-      const counterElement = ref.querySelector('.counter') as HTMLElement
-      if (counterElement) {
-        animateCounter(counterElement, props.stats[index].value)
-      }
-    }
-  })
-})
+const statsTitle = ref<HTMLElement>()
 
 defineExpose({
   statRefs,
+  statsTitle,
 })
 </script>
+
+<style scoped>
+.stat-card-enhanced {
+  perspective: 1000px;
+}
+
+.stat-icon-bg {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+}
+
+.stat-card-enhanced:nth-child(2) .stat-icon-bg {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+}
+
+.stat-card-enhanced:nth-child(3) .stat-icon-bg {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+</style>

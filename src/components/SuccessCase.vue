@@ -11,7 +11,7 @@
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div class="space-y-6">
         <div
-          class="inline-flex items-center gap-3 bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-medium"
+          class="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-100 to-sky-100 text-cyan-700 px-4 py-2 rounded-full text-sm font-medium border border-cyan-200"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
@@ -24,11 +24,11 @@
           {{ badgeText }}
         </div>
 
-        <h3 class="text-3xl md:text-4xl font-bold text-black leading-tight">
+        <h3 class="text-3xl md:text-4xl font-bold text-slate-800 leading-tight">
           {{ title }}
         </h3>
 
-        <p class="text-lg text-gray-600 leading-relaxed">
+        <p class="text-lg text-slate-600 leading-relaxed">
           {{ description }}
         </p>
 
@@ -40,7 +40,7 @@
             >
               <component :is="feature.icon" :class="feature.iconClass" />
             </div>
-            <p class="text-gray-600 leading-relaxed">{{ feature.text }}</p>
+            <p class="text-slate-600 leading-relaxed">{{ feature.text }}</p>
           </div>
         </div>
 
@@ -57,14 +57,14 @@
       </div>
 
       <div class="relative">
-        <div class="h-96 rounded-2xl shadow-sm border border-gray-100 overflow-hidden bg-gray-900">
+        <div
+          class="h-96 rounded-2xl shadow-lg border border-cyan-100 overflow-hidden bg-gradient-to-br from-cyan-50 to-sky-50"
+        >
           <img :src="image" :alt="imageAlt" class="w-full h-auto object-contain" />
         </div>
 
         <!-- Stats overlay -->
-        <div
-          class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm rounded-xl p-4 border border-gray-100"
-        >
+        <div class="absolute bottom-6 left-6 right-6 glass-card-floating rounded-xl p-4">
           <div class="grid grid-cols-2 gap-4">
             <div v-for="(stat, index) in stats" :key="index" class="text-center">
               <div class="text-2xl font-bold mb-1" :class="stat.valueClass">
