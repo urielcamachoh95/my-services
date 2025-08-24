@@ -11,7 +11,7 @@
       </div>
 
       <div class="max-w-4xl mx-auto">
-        <div class="space-y-6">
+        <div class="space-y-4">
           <div
             v-for="(faq, index) in faqs"
             :key="index"
@@ -20,34 +20,35 @@
           >
             <button
               @click="toggleFAQ(index)"
-              class="w-full px-8 py-6 text-left flex items-center justify-between group hover:bg-cyan-50/50 transition-colors duration-300 rounded-2xl"
+              class="w-full px-6 py-4 text-left flex items-center justify-between group hover:bg-cyan-50/50 transition-colors duration-300 rounded-2xl"
             >
               <h3
                 class="text-lg font-semibold text-slate-800 group-hover:text-cyan-700 transition-colors duration-300"
               >
                 {{ faq.question }}
               </h3>
-              <div
-                class="w-6 h-6 flex items-center justify-center text-cyan-600 transition-transform duration-300"
+              <svg
+                class="w-5 h-5 text-slate-400 group-hover:text-cyan-600 transition-all duration-300 flex-shrink-0"
                 :class="{ 'rotate-180': faq.isOpen }"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </div>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
             </button>
 
-            <div v-show="faq.isOpen" class="px-8 pb-6">
-              <div class="text-slate-600 leading-relaxed space-y-4">
+            <div v-show="faq.isOpen" class="px-6 pb-4">
+              <div class="text-slate-600 leading-relaxed space-y-3">
                 <p>{{ faq.answer }}</p>
-                <div v-if="faq.details" class="bg-cyan-50/50 rounded-xl p-4 border border-cyan-100">
+                <div v-if="faq.details" class="bg-cyan-50/50 rounded-xl p-3 border border-cyan-100">
                   <h4 class="font-medium text-cyan-800 mb-2">{{ faq.details.title }}</h4>
-                  <ul class="space-y-2">
+                  <ul class="space-y-1">
                     <li
                       v-for="(detail, detailIndex) in faq.details.items"
                       :key="detailIndex"
@@ -64,8 +65,8 @@
         </div>
 
         <!-- CTA Section -->
-        <div class="mt-12 text-center">
-          <p class="text-slate-600 mb-6">¿Tienes alguna otra pregunta? Estoy aquí para ayudarte.</p>
+        <div class="mt-8 text-center">
+          <p class="text-slate-600 mb-4">¿Tienes alguna otra pregunta? Estoy aquí para ayudarte.</p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="https://wa.me/+5212212287141?text=Hola%20Uriel,%20tengo%20una%20pregunta%20sobre%20mi%20proyecto%20web"
@@ -75,7 +76,10 @@
             >
               <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path
-                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.87 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"
+                  d="M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.52 3.449zM12.05 21.49c-1.554 0-3.146-.428-4.5-1.08l-.361-.214-3.75.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884z"
+                />
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"
                 />
               </svg>
               Preguntar por WhatsApp
@@ -105,7 +109,7 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  d="M21 3l-6 6m0 0V4m0 5h5M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.683A1 1 0 008.279 3H5z"
                 ></path>
               </svg>
             </a>

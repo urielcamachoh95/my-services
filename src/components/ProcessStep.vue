@@ -1,6 +1,8 @@
 <template>
   <div class="group relative vapor-fade-in">
-    <div class="glass-card relative overflow-hidden h-full p-6">
+    <div
+      class="glass-card relative overflow-hidden h-full p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+    >
       <!-- Subtle background pattern -->
       <div class="absolute inset-0 opacity-5">
         <div class="absolute inset-0 isometric-grid"></div>

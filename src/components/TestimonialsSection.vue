@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-6xl mx-auto">
     <h2
-      class="text-4xl md:text-5xl font-bold text-slate-800 text-center mb-16"
+      class="text-4xl md:text-5xl font-bold text-slate-800 text-center mb-16 hover:text-cyan-700 transition-colors duration-300 cursor-default"
       ref="testimonialsTitle"
     >
       {{ title }}
@@ -9,7 +9,7 @@
 
     <!-- Testimonials Carousel -->
     <div class="relative overflow-hidden" ref="carouselContainer">
-      <div class="flex transition-transform duration-500 ease-out" ref="testimonialsTrack">
+      <div class="flex transition-all duration-300 ease-out" ref="testimonialsTrack">
         <div
           v-for="(slide, slideIndex) in testimonialSlides"
           :key="slideIndex"
@@ -20,20 +20,32 @@
             <div
               v-for="(testimonial, testimonialIndex) in slide"
               :key="`${slideIndex}-${testimonialIndex}`"
-              class="glass-card p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              class="glass-card testimonial-card p-6 hover:shadow-xl hover:-translate-y-2 hover:scale-105 transition-all duration-300 animate-fade-in-up"
               ref="testimonialRefs"
             >
               <!-- Quote icon -->
               <div class="flex justify-between items-start mb-4">
-                <div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center">
-                  <svg class="w-6 h-6 text-cyan-600" fill="currentColor" viewBox="0 0 24 24">
+                <div
+                  class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center hover:bg-cyan-200 hover:scale-110 transition-all duration-300 group-hover:rotate-12"
+                >
+                  <svg
+                    class="w-6 h-6 text-cyan-600 group-hover:text-cyan-700 transition-colors duration-300"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
                     />
                   </svg>
                 </div>
-                <div class="w-6 h-6 bg-cyan-100 rounded-full flex items-center justify-center">
-                  <svg class="w-3 h-3 text-cyan-600" fill="currentColor" viewBox="0 0 24 24">
+                <div
+                  class="w-6 h-6 bg-cyan-100 rounded-full flex items-center justify-center hover:bg-cyan-200 hover:scale-110 transition-all duration-300 group-hover:rotate-12"
+                >
+                  <svg
+                    class="w-3 h-3 text-cyan-600 group-hover:text-cyan-700 transition-colors duration-300"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
@@ -45,15 +57,23 @@
               </blockquote>
 
               <!-- Author info -->
-              <div class="flex items-center gap-3">
+              <div class="flex items-center gap-3 group/author">
                 <div
-                  class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center text-lg"
+                  class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center text-lg hover:bg-cyan-200 hover:scale-110 transition-all duration-300 group-hover/author:rotate-12"
                 >
                   {{ testimonial.avatarEmoji }}
                 </div>
-                <div>
-                  <div class="font-semibold text-slate-800">{{ testimonial.authorName }}</div>
-                  <div class="text-sm text-slate-600">{{ testimonial.authorTitle }}</div>
+                <div class="group-hover/author:translate-x-1 transition-transform duration-300">
+                  <div
+                    class="font-semibold text-slate-800 group-hover/author:text-cyan-700 transition-colors duration-300"
+                  >
+                    {{ testimonial.authorName }}
+                  </div>
+                  <div
+                    class="text-sm text-slate-600 group-hover/author:text-slate-700 transition-colors duration-300"
+                  >
+                    {{ testimonial.authorTitle }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -64,7 +84,7 @@
       <!-- Navigation Arrows -->
       <button
         @click="previousSlide"
-        class="carousel-arrow absolute left-4 top-1/2 transform -translate-y-1/2 z-10"
+        class="carousel-arrow absolute left-4 top-1/2 transform -translate-y-1/2 z-10 transition-all duration-300 hover:scale-110"
         :disabled="currentSlide === 0"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,7 +99,7 @@
 
       <button
         @click="nextSlide"
-        class="carousel-arrow absolute right-4 top-1/2 transform -translate-y-1/2 z-10"
+        class="carousel-arrow absolute right-4 top-1/2 transform -translate-y-1/2 z-10 transition-all duration-300 hover:scale-110"
         :disabled="currentSlide === testimonialSlides.length - 1"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,50 +113,58 @@
           v-for="(slide, index) in testimonialSlides"
           :key="index"
           @click="goToSlide(index)"
-          class="carousel-dot"
+          class="carousel-dot transition-all duration-300 hover:scale-125"
           :class="{ active: index === currentSlide }"
         ></button>
-      </div>
-
-      <!-- Auto-play Toggle -->
-      <div class="flex justify-center mt-4">
-        <button
-          @click="toggleAutoPlay"
-          class="auto-play-toggle"
-          :class="{ playing: isAutoPlaying }"
-        >
-          <svg v-if="!isAutoPlaying" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M8 5v14l11-7z" />
-          </svg>
-          <svg v-else class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-          </svg>
-        </button>
       </div>
     </div>
 
     <!-- Stats Section -->
     <div
-      class="testimonials-stats mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+      class="testimonials-stats mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
       ref="testimonialStats"
     >
       <div
-        class="glass-card text-center p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+        class="glass-card text-center p-5 hover:shadow-xl hover:-translate-y-2 hover:scale-105 transition-all duration-300 group/stat"
       >
-        <div class="text-3xl font-bold text-cyan-600 mb-2">100%</div>
-        <div class="text-xs text-slate-600">Clientes Satisfechos</div>
+        <div
+          class="text-3xl font-bold text-cyan-600 mb-2 group-hover/stat:scale-110 transition-transform duration-300"
+        >
+          100%
+        </div>
+        <div
+          class="text-xs text-slate-600 group-hover/stat:text-slate-700 transition-colors duration-300"
+        >
+          Clientes Satisfechos
+        </div>
       </div>
       <div
-        class="glass-card text-center p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+        class="glass-card text-center p-5 hover:shadow-xl hover:-translate-y-2 hover:scale-105 transition-all duration-300 group/stat"
       >
-        <div class="text-3xl font-bold text-sky-600 mb-2">20+</div>
-        <div class="text-xs text-slate-600">Proyectos Exitosos</div>
+        <div
+          class="text-3xl font-bold text-sky-600 mb-2 group-hover/stat:scale-110 transition-transform duration-300"
+        >
+          20+
+        </div>
+        <div
+          class="text-xs text-slate-600 group-hover/stat:text-slate-700 transition-colors duration-300"
+        >
+          Proyectos Exitosos
+        </div>
       </div>
       <div
-        class="glass-card text-center p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+        class="glass-card text-center p-5 hover:shadow-xl hover:-translate-y-2 hover:scale-105 transition-all duration-300 group/stat"
       >
-        <div class="text-3xl font-bold text-violet-600 mb-2">4.9/5</div>
-        <div class="text-xs text-slate-600">Calificación Promedio</div>
+        <div
+          class="text-3xl font-bold text-violet-600 mb-2 group-hover/stat:scale-110 transition-transform duration-300"
+        >
+          4.9/5
+        </div>
+        <div
+          class="text-xs text-slate-600 group-hover/stat:text-slate-700 transition-colors duration-300"
+        >
+          Calificación Promedio
+        </div>
       </div>
     </div>
   </div>
@@ -169,8 +197,6 @@ const testimonialSlides = computed(() => {
 })
 const carouselContainer = ref<HTMLElement>()
 const testimonialsTrack = ref<HTMLElement>()
-const isAutoPlaying = ref(true)
-let autoPlayInterval: number | null = null
 
 // Testimonials data
 const testimonials = computed(() => [
@@ -374,35 +400,6 @@ const goToSlide = (index: number) => {
   animateToIndex(index)
 }
 
-// Auto-play functionality
-const startAutoPlay = () => {
-  if (autoPlayInterval) return
-
-  autoPlayInterval = window.setInterval(() => {
-    if (currentSlide.value < testimonialSlides.value.length - 1) {
-      nextSlide()
-    } else {
-      animateToIndex(0) // Loop back to first
-    }
-  }, 5000) // Change every 5 seconds
-}
-
-const stopAutoPlay = () => {
-  if (autoPlayInterval) {
-    clearInterval(autoPlayInterval)
-    autoPlayInterval = null
-  }
-}
-
-const toggleAutoPlay = () => {
-  isAutoPlaying.value = !isAutoPlaying.value
-  if (isAutoPlaying.value) {
-    startAutoPlay()
-  } else {
-    stopAutoPlay()
-  }
-}
-
 // Keyboard navigation
 const handleKeyboardNavigation = (event: KeyboardEvent) => {
   switch (event.key) {
@@ -414,10 +411,6 @@ const handleKeyboardNavigation = (event: KeyboardEvent) => {
       event.preventDefault()
       nextSlide()
       break
-    case ' ':
-      event.preventDefault()
-      toggleAutoPlay()
-      break
   }
 }
 
@@ -427,35 +420,13 @@ onMounted(() => {
   nextTick(() => {
     // Initialize enhanced entrance animation
     animateTestimonialsEntrance()
-
-    // Start auto-play after entrance animation
-    if (isAutoPlaying.value) {
-      setTimeout(() => {
-        startAutoPlay()
-      }, 2000) // Start auto-play after 2 seconds
-    }
   })
-
-  // Pause auto-play on hover
-  if (carouselContainer.value) {
-    carouselContainer.value.addEventListener('mouseenter', stopAutoPlay)
-    carouselContainer.value.addEventListener('mouseleave', () => {
-      if (isAutoPlaying.value) {
-        startAutoPlay()
-      }
-    })
-  }
 
   // Add keyboard navigation
   document.addEventListener('keydown', handleKeyboardNavigation)
 })
 
 onUnmounted(() => {
-  stopAutoPlay()
-  if (carouselContainer.value) {
-    carouselContainer.value.removeEventListener('mouseenter', stopAutoPlay)
-    carouselContainer.value.removeEventListener('mouseleave', startAutoPlay)
-  }
   document.removeEventListener('keydown', handleKeyboardNavigation)
 })
 
@@ -475,5 +446,84 @@ defineExpose({
 .testimonials-track {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Time animation for testimonial cards */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation for multiple cards */
+.testimonial-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.testimonial-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.testimonial-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.testimonial-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Carousel navigation styling */
+.carousel-arrow {
+  @apply bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-slate-200 p-3 text-slate-600 hover:text-slate-900 hover:bg-white;
+}
+
+.carousel-arrow:disabled {
+  @apply opacity-50 cursor-not-allowed hover:scale-100;
+}
+
+.carousel-dot {
+  @apply w-3 h-3 rounded-full bg-slate-300 hover:bg-slate-400;
+}
+
+.carousel-dot.active {
+  @apply bg-cyan-500 scale-125;
+}
+
+/* Enhanced hover effects for testimonial cards */
+.testimonial-card:hover .glass-card {
+  @apply shadow-2xl;
+}
+
+/* Smooth text color transitions */
+.testimonial-card:hover blockquote {
+  @apply text-slate-800;
+}
+
+/* Enhanced quote icon animations */
+.testimonial-card:hover .w-12.h-12 {
+  @apply shadow-lg;
+}
+
+.testimonial-card:hover .w-6.h-6 {
+  @apply shadow-md;
+}
+
+/* Stats hover glow effect */
+.group\/stat:hover {
+  @apply shadow-2xl;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-property:
+    color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>

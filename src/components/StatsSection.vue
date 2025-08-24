@@ -13,18 +13,18 @@
       <div class="vapor-grid-wide grid grid-cols-1 md:grid-cols-3">
         <div v-for="(stat, index) in stats" :key="index" class="group relative stat-card-enhanced">
           <div
-            class="glass-card text-center p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            class="glass-card text-center p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
           >
             <!-- Icon with colored background -->
             <div
-              class="w-16 h-16 mx-auto mb-6 rounded-xl flex items-center justify-center stat-icon-bg"
+              class="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center stat-icon-bg"
             >
               <component :is="stat.icon" class="w-8 h-8 text-white" />
             </div>
 
             <!-- Stat number -->
             <div
-              class="text-4xl font-bold text-slate-800 mb-3 group-hover:scale-110 transition-transform duration-300"
+              class="text-4xl font-bold text-slate-800 mb-2 group-hover:scale-110 transition-transform duration-300"
             >
               {{ stat.value }}
             </div>

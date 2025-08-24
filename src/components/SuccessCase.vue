@@ -64,7 +64,9 @@
         </div>
 
         <!-- Stats overlay -->
-        <div class="absolute bottom-6 left-6 right-6 glass-card-floating rounded-xl p-4">
+        <div
+          class="absolute bottom-6 left-6 right-6 glass-card-floating rounded-xl p-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+        >
           <div class="grid grid-cols-2 gap-4">
             <div v-for="(stat, index) in stats" :key="index" class="text-center">
               <div class="text-2xl font-bold mb-1" :class="stat.valueClass">

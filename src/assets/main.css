@@ -507,11 +507,11 @@
   }
 
   .vapor-section-header {
-    @apply text-center mb-12 lg:mb-16;
+    @apply text-center mb-8 lg:mb-12;
   }
 
   .vapor-section-title {
-    @apply heading-lg mb-6 lg:mb-8;
+    @apply heading-lg mb-4 lg:mb-6;
   }
 
   .vapor-section-subtitle {
@@ -520,84 +520,68 @@
 
   /* Standardized spacing system for consistency */
   .vapor-spacing-sm {
+    @apply mb-3;
+  }
+  .vapor-spacing-md {
     @apply mb-4;
   }
-
-  .vapor-spacing-md {
+  .vapor-spacing-lg {
     @apply mb-6;
   }
-
-  .vapor-spacing-lg {
+  .vapor-spacing-xl {
     @apply mb-8;
   }
-
-  .vapor-spacing-xl {
+  .vapor-spacing-2xl {
     @apply mb-12;
   }
 
-  .vapor-spacing-2xl {
-    @apply mb-16;
-  }
-
-  /* Consistent grid gaps */
+  /* Consistent grid gaps - reduced for more compact layout */
   .vapor-grid-tight {
+    @apply gap-3 lg:gap-4;
+  }
+  .vapor-grid-normal {
     @apply gap-4 lg:gap-6;
   }
-
-  .vapor-grid-normal {
+  .vapor-grid-wide {
     @apply gap-6 lg:gap-8;
   }
 
-  .vapor-grid-wide {
-    @apply gap-8 lg:gap-12;
-  }
-
-  /* Standardized section spacing */
+  /* New standardized spacing classes - more compact */
   .vapor-section-spacing {
-    @apply py-16 lg:py-20;
-  }
-
-  .vapor-section-spacing-compact {
     @apply py-12 lg:py-16;
   }
-
-  /* Standardized component spacing */
-  .vapor-component-spacing {
-    @apply mb-8;
+  .vapor-section-spacing-compact {
+    @apply py-8 lg:py-12;
   }
-
-  .vapor-component-spacing-compact {
+  .vapor-section-spacing-tight {
+    @apply py-6 lg:py-8;
+  }
+  .vapor-component-spacing {
     @apply mb-6;
   }
-
-  .vapor-component-spacing-tight {
+  .vapor-component-spacing-compact {
     @apply mb-4;
   }
-
-  /* Standardized card spacing */
-  .vapor-card-spacing {
-    @apply p-6;
+  .vapor-component-spacing-tight {
+    @apply mb-3;
   }
-
-  .vapor-card-spacing-compact {
+  .vapor-card-spacing {
     @apply p-5;
   }
-
-  .vapor-card-spacing-tight {
+  .vapor-card-spacing-compact {
     @apply p-4;
   }
-
-  /* Standardized margin between sections */
-  .vapor-section-margin {
-    @apply mt-16 lg:mt-20;
+  .vapor-card-spacing-tight {
+    @apply p-3;
   }
-
-  .vapor-section-margin-compact {
+  .vapor-section-margin {
     @apply mt-12 lg:mt-16;
   }
-
-  .vapor-section-margin-tight {
+  .vapor-section-margin-compact {
     @apply mt-8 lg:mt-12;
+  }
+  .vapor-section-margin-tight {
+    @apply mt-6 lg:mt-8;
   }
 
   /* Improved spacing utilities */
@@ -968,4 +952,92 @@
   .transition-bounce {
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
+}
+
+/* Animation states */
+.animate-in {
+  opacity: 1;
+  transform: translate(0, 0) scale(1) rotateY(0deg);
+}
+
+/* Hover animations */
+.hover-lift {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+}
+
+/* Mobile menu transitions */
+.mobile-menu-transition {
+  transition: all 0.3s ease;
+  transform-origin: top;
+}
+
+.mobile-menu-transition[v-show='true'] {
+  animation: slideDown 0.3s ease-out;
+}
+
+.mobile-menu-transition[v-show='false'] {
+  animation: slideUp 0.2s ease-in;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+}
+
+/* Mobile carousel transitions */
+.mobile-carousel-track {
+  transition: transform 0.5s ease-out;
+}
+
+.mobile-carousel-track.slide-0 {
+  transform: translateX(0%);
+}
+.mobile-carousel-track.slide-1 {
+  transform: translateX(-100%);
+}
+.mobile-carousel-track.slide-2 {
+  transform: translateX(-200%);
+}
+.mobile-carousel-track.slide-3 {
+  transform: translateX(-300%);
 }
